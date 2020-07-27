@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  margin-top: 10vh; 
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+h1{
+  font-size: 10vh;
+  color: #AF7AC5;
+  margin-bottom: 0px;
+}
+
+h3{
+  margin-top: 0px;
+  font-size: 2vh;
+  color: #D7DBDD;
+}
+
+
+img{
+  width: 50vh;
+}
+
+.button{
+  height: 5vh;
+  width: 17vh;
+  border: none;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase; 
+  margin-left: 1vh;
+}
+
+.default{
+  background: #AF7AC5;
+  color: white;
+}
