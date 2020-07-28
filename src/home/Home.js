@@ -1,13 +1,17 @@
-import React from 'react';
-import './Home.css';
-import Nav from '../nav/Nav'
+import React from "react";
+import "./Home.css";
+import Nav from "../nav/Nav";
 
 /** List component */
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Divider from "@material-ui/core/Divider";
+import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
+import IconButton from '@material-ui/core/IconButton';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+
+import { FaPen } from "react-icons/fa";
 
 function LocationItem(props) {
   return (
@@ -17,40 +21,40 @@ function LocationItem(props) {
           primary={props.name}
           secondary={
             <React.Fragment>
-              <Typography
-                variant="body2"
-                color="textPrimary"
-              >
-              </Typography>
-              {"3014 Walnut St, Philadelphia PA 19104"}
+              <Typography variant="body2" color="textPrimary"></Typography>
+              {"People met: Abigail"}
             </React.Fragment>
           }
-        />
+        /> 
+      <ListItemSecondaryAction>
+          <IconButton edge="end" aria-label="comments">
+            <FaPen className="icon" />
+          </IconButton>
+        </ListItemSecondaryAction>
       </ListItem>
       <Divider component="li" />
     </List>
-  )
+  );
 }
-
 
 function Home() {
   return (
     <div>
-      <Nav />
-        <div className="Home">
-          <input type="text" placeholder="Address location" /> 
-          <input type="date" placeholder="Time at location" /> 
-          <button class="button default left full"> Search </button>
-          <button class="button left full"> Add Location </button>
-          <div className="timeline" >
-              <LocationItem name="Walmart (07/27/2020)"/>
-              <LocationItem name="Drexel University (07/27/2020)"/>
-              <LocationItem name="Wawa (07/27/2020)"/>
-              <LocationItem name="Target (07/27/2020)"/>
-          </div>
+      <Nav title="Track your location" />
+      <div className="Home">
+        <input type="text" placeholder="Address location" />
+        <input type="text" placeholder="People at location" />
+        <input type="date" />
+        <button className="button default left full"> Search </button>
+        <button className="button left full"> Add Location </button>
+        <div className="timeline">
+          <LocationItem name="07/27/2020 - Walmart" />
+          <LocationItem name="07/25/2020 - Drexel University" />
+          <LocationItem name="07/25/2020 - Wawa" />
         </div>
+      </div>
     </div>
   );
 }
 
-export default Home; 
+export default Home;

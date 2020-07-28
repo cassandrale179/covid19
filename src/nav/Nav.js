@@ -1,25 +1,42 @@
-import React from 'react';
-import './Nav.css'
-import { FaMapMarker } from 'react-icons/fa';
-import { FaUser } from 'react-icons/fa';
-import { FaHome } from 'react-icons/fa';
-import { FaAlignJustify} from 'react-icons/fa';
+import React from "react";
+import "./Nav.css";
+import {
+  FaMapMarker,
+  FaUser,
+  FaAlignJustify,
+  FaTemperatureHigh,
+} from "react-icons/fa";
 
+/* Navigate to given page */ 
+function navigate(location) {
+  window.location.href = `/${location}`;
+}
 
-function Nav() {
+/* Renders the top and bottom navigation bar */ 
+function Nav(props) {
   return (
     <div>
       <div className="topNav">
-          <h4>Track your recent location</h4>
+        <h4>{props.title}</h4>
+        <h5> {props.subtitle}</h5>
       </div>
       <div className="bottomNav">
-          <div className="page"> <FaMapMarker /> 
-            <label>Map</label> </div>
-          <div className="page"> <FaUser /> 
-             <label>Users</label> 
-          </div> 
-          <div className="page"> <FaHome /> </div>  
-          <div className="page"> <FaAlignJustify /></div> 
+        <div onClick={() => navigate("home")} className="page">
+          <FaMapMarker />
+          <label>Map</label>{" "}
+        </div>
+        <div onClick={() => navigate("users")} className="page">
+          <FaUser />
+          <label>Users</label>
+        </div>
+        <div onClick={() => navigate("symptoms")} className="page">
+          <FaTemperatureHigh />
+          <label>Symptoms</label>
+        </div>
+        <div onClick={() => navigate("settings")} className="page">
+          <FaAlignJustify />
+          <label>Settings</label>
+        </div>
       </div>
     </div>
   );

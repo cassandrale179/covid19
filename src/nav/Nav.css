@@ -2,9 +2,18 @@
     position: fixed;
     top: 0px;
     width: 100%;
-    font-size: 4vh;
     text-align: center;
-    color: var(--primary)
+    height: var(--topNavHeight);
+ }
+
+ .topNav h4{
+    font-size: 4vh;
+    color: var(--primary); 
+ }
+
+ .topNav h5{
+     margin-top: -4vh;
+     color: var(--subtitle); 
  }
 
 

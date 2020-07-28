@@ -5,14 +5,14 @@
   
 h1{
     font-size: 10vh;
-    color: #AF7AC5;
+    color: var(--primary);
     margin-bottom: 0px;
 }
   
 h3{
     margin-top: 0px;
     font-size: 2vh;
-    color: #D7DBDD;
+    color:  var(--subtitle);
 }
   
   
