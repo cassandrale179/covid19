@@ -23,11 +23,11 @@ function Nav(props) {
       <div className="bottomNav">
         <div onClick={() => navigate("home")} className="page">
           <FaMapMarker />
-          <label>Map</label>{" "}
+          <label>Track</label>{" "}
         </div>
         <div onClick={() => navigate("users")} className="page">
           <FaUser />
-          <label>Users</label>
+          <label>Contacts</label>
         </div>
         <div onClick={() => navigate("symptoms")} className="page">
           <FaTemperatureHigh />

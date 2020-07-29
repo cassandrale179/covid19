@@ -40,7 +40,7 @@ function LocationItem(props) {
 function Home() {
   return (
     <div>
-      <Nav title="Track your location" />
+      <Nav title="Track your journey" subtitle="Record location and people you've met." />
       <div className="Home">
         <input type="text" placeholder="Address location" />
         <input type="text" placeholder="People at location" />
