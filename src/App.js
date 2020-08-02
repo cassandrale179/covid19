@@ -5,6 +5,7 @@ import Login from './login/Login';
 import Home from './home/Home'; 
 import Users from './users/Users'; 
 import Symptoms from './symptoms/Symptoms';
+import Settings from './settings/Settings';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" component={Home} exact /> 
         <Route path="/users" component={Users} exact /> 
         <Route path="/symptoms" component={Symptoms} exact /> 
+        <Route path="/settings" component={Settings} exact />  
       </Switch>
     </main>
   );

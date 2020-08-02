@@ -23,26 +23,30 @@ function SymptomsList(props){
         <ListItem button>
             <ListItemText primary={props.title} />
             <ListItemIcon>
-              <Checkbox
+              <Checkbox 
                 edge="start"
                 tabIndex={-1}
                 disableRipple
+                style ={{color: "#AF7AC5"}} 
               />
             </ListItemIcon>
         </ListItem>
     )
-  }
-
-
+}
 
 function Symptoms() {
   return (
     <div className="Symptoms">
-      <Nav title="Track your symptoms" subtitle="Have you experience any of the listed symptoms?"/>
+      <Nav title="Symptoms" subtitle="Have you experience any of the listed symptoms?"/>
       <div className="symptomsList">
         <SymptomsList title="Fever" />
         <SymptomsList title="Shortness of breath" />
+        <SymptomsList title="Muscle or body aches" />
+        <SymptomsList title="Headache" />
+        <SymptomsList title="Sore throat" />
+        <SymptomsList title="Congestion or runny nose" />
       </div>
+      <button className="button default full"> Alert my contacts</button>
     </div>
   );
 }

@@ -21,14 +21,34 @@
   margin-top: 1vh;
 }
 
+.button:hover {
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+.chip{
+  margin-right: 1vh;
+  border-radius: 50px;
+  outline: none;
+  padding: 1vh;
+  font-size: 1.5vh;
+  background: white;
+  border: 0.1px #F2F3F4 solid;
+  color: #999999;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
+}
+
+.chip:hover {
+  border: 1px var(--primary) solid; 
+  color: var(--primary);
+  background: #EBDEF0;
+}
+
+
 .default{
   background: var(--primary);
   color: white;
 }
 
-.button:hover {
-  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
-}
 
 .left{
   float: left;
