@@ -13,16 +13,17 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 import { FaPen } from "react-icons/fa";
 
+/* Function to render a row under track your journey */ 
 function LocationItem(props) {
   return (
     <List>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary={props.name}
+          primary= {props.date + " | " + props.location}
           secondary={
             <React.Fragment>
               <Typography variant="body2" color="textPrimary"></Typography>
-              {"People met: Abigail"}
+              People met: {props.people}
             </React.Fragment>
           }
         /> 
@@ -37,24 +38,50 @@ function LocationItem(props) {
   );
 }
 
-function Home() {
-  return (
-    <div>
+/* Main default class home */ 
+class Home extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      storage: [], 
+      address: '3601 Walnut St, Philadelphia, PA 19104', 
+
+    }
+  }
+
+  /* One component mounted, get user current location */ 
+  componentDidMount(){
+    if ("geolocation" in navigator){
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log("Latitude is :", position.coords.latitude);
+        console.log("Longitude is :", position.coords.longitude);
+      });
+    }
+  }
+
+  /* Function to add an address, location and people for Add Location button */ 
+  addItem(){
+    console.log('This is clicked');
+  }
+
+  render() {
+    return (
+      <div>
       <Nav title="Track your journey" subtitle="Record location and people you've met." />
       <div className="Home">
-        <input type="text" placeholder="Address location" />
-        <input type="text" placeholder="People at location" />
-        <input type="date" />
+        <input type="text" placeholder="Address location" value={this.state.address} />
+        <input type="text" placeholder="People at location" value={this.state.people} />
+        <input type="date" value={this.state.date} />
         <button className="button default left full"> Search </button>
-        <button className="button left full"> Add Location </button>
+        <button className="button left full" onClick={this.addItem}> Add Location </button>
         <div className="timeline">
-          <LocationItem name="07/27/2020 - Walmart" />
-          <LocationItem name="07/25/2020 - Drexel University" />
-          <LocationItem name="07/25/2020 - Wawa" />
+           {this.state.storage.map(s => 
+           <LocationItem date={s.date} location={s.location} people={s.people} />)}
         </div>
       </div>
     </div>
-  );
+    );
+  }
 }
 
 export default Home;
