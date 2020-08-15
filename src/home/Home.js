@@ -19,7 +19,7 @@ function LocationItem(props) {
     <List>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary={props.date + " | " + props.location}
+          primary={props.date + " | " + props.address}
           secondary={
             <React.Fragment>
               <Typography variant="body2" color="textPrimary"></Typography>
@@ -47,6 +47,7 @@ class Home extends React.Component {
       address: "",
       people: "",
       date: "",
+      errorMessage : "",
     };
     // !IMPORTANT! bind all functions call to recognize this keyword
     this.handleChangeAddress = this.handleChangeAddress.bind(this);
@@ -79,10 +80,30 @@ class Home extends React.Component {
 
   /* Add address*/
   addItem() {
-    console.log(this.state);
+    if (this.state.address && this.state.date){
+      const locationItem = {
+        address: this.state.address, 
+        people: this.state.people,
+        date: this.state.date,
+      }
+      const joined = this.state.storage.concat(locationItem); 
+      this.setState({
+        storage: joined, 
+        errorMessage: '',
+      })
+      console.log(typeof(this.state.storage));
+    } else {
+      const error = 'Please fill in the address and date in the input';
+      this.setState({ errorMessage: error });
+    }
   }
 
   render() {
+
+    const locationItems = this.state.storage.map(v => {
+      return <LocationItem key={v.address} address={v.address} date={v.date} people={v.people} />
+    })
+
     return (
       <div>
         <Nav
@@ -102,20 +123,14 @@ class Home extends React.Component {
             defaultValue={this.state.people}
             onChange={this.handleChangePeople}
           />
-          <input type="date" onChange={this.handleChange} />
+          <input type="date" onChange={this.handleChangeDate} />
           <button className="button default left full"> Search </button>
           <button className="button left full" onClick={this.addItem}>
             {" "}
             Add Location{" "}
           </button>
           <div className="timeline">
-            {this.state.storage.map((s) => (
-              <LocationItem
-                date={s.date}
-                location={s.location}
-                people={s.people}
-              />
-            ))}
+            {locationItems}
           </div>
         </div>
       </div>
