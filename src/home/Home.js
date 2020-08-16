@@ -23,9 +23,6 @@ import TextField from '@material-ui/core/TextField';
 
 import { FaPen, FaThinkPeaks } from "react-icons/fa";
 
-
-
-
 /* Function to render a row under track your journey */
 function LocationItem(props) {
   const [open, setOpen] = React.useState(false);
@@ -51,26 +48,9 @@ function LocationItem(props) {
           <DialogContentText id="alert-dialog-description">
             Edit your information below. Or you can delete it by clicking delete.
           </DialogContentText>
-          <TextField
-            margin="dense"
-            id="location"
-            label="Address"
-            type="text"
-            fullWidth
-          />
-           <TextField
-            margin="dense"
-            id="people"
-            label="People"
-            type="text"
-            fullWidth
-          />
-           <TextField
-            margin="dense"
-            id="date"
-            type="date"
-            fullWidth
-          />
+          <TextField margin="dense" id="location" label="Address" type="text" fullWidth />
+          <TextField margin="dense" id="people" label="People" type="text" fullWidth />
+          <TextField margin="dense" id="date" type="date" fullWidth />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -147,7 +127,6 @@ class Home extends React.Component {
     }
 
     // Get API key 
-    Geocode.setApiKey("AIzaSyDjrq68D6YESU7xYbaqIElmuOjFBVqJ3Rc"); 
     const success = position => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
