@@ -1,89 +1,12 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import "./Home.css";
 import Nav from "../nav/Nav";
 import Geocode from "react-geocode";
 
-/** List component */
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Divider from "@material-ui/core/Divider";
-import ListItemText from "@material-ui/core/ListItemText";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import LocationItem from './LocationItem';
+import  AutoCompleteAddressForm from './AutoCompleteAddressForm';
 
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
-
-
-import { FaPen, FaThinkPeaks } from "react-icons/fa";
-
-/* Function to render a row under track your journey */
-function LocationItem(props) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Edit your location"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Edit your information below. Or you can delete it by clicking delete.
-          </DialogContentText>
-          <TextField margin="dense" id="location" label="Address" type="text" fullWidth />
-          <TextField margin="dense" id="people" label="People" type="text" fullWidth />
-          <TextField margin="dense" id="date" type="date" fullWidth />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Save
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <List>
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary={props.date + " | " + props.address}
-          secondary={
-            <React.Fragment>
-              <Typography variant="body2" color="textPrimary"></Typography>
-              People met: {props.people}
-            </React.Fragment>
-          }
-        />
-        <ListItemSecondaryAction>
-          <IconButton edge="end" aria-label="comments">
-            <FaPen className="icon" onClick={handleClickOpen}/>
-          </IconButton>
-        </ListItemSecondaryAction>
-      </ListItem>
-      <Divider component="li" />
-    </List>
-    </div>
-  );
-}
-/* Main default class home */
+// /* Main default class home */
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -103,6 +26,27 @@ class Home extends React.Component {
     this.addItem = this.addItem.bind(this);
   }
 
+  componentDidMount() {
+    // Load any prior stored address in local storage
+    Geocode.setApiKey("AIzaSyDjrq68D6YESU7xYbaqIElmuOjFBVqJ3Rc"); 
+    const localAddress =  window.localStorage.getItem("storage"); 
+    if (localAddress){
+      this.setState({
+        storage: JSON.parse(localAddress)
+      })
+    }
+    // Get user current position as defualt address
+    const success = position => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      this.setDefaultAddress(latitude, longitude);
+    };
+    const error = () => {
+      console.log("Unable to retrieve your location");
+    };
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+  /* Set user default address based on their latitude and longitude */ 
   setDefaultAddress(latitude, longitude){
     Geocode.fromLatLng(latitude, longitude).then(
       response => {
@@ -115,29 +59,6 @@ class Home extends React.Component {
         console.error(error);
       });
   }
-
-  /* One component mounted, get current location */
-  componentDidMount() {
-    console.log(window.localStorage); 
-    const localAddress =  window.localStorage.getItem("storage"); 
-    if (localAddress){
-      this.setState({
-        storage: JSON.parse(localAddress)
-      })
-    }
-
-    // Get API key 
-    const success = position => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      this.setDefaultAddress(latitude, longitude);
-    };
-    const error = () => {
-      console.log("Unable to retrieve your location");
-    };
-    navigator.geolocation.getCurrentPosition(success, error);
-  }
-
   /* Handlers for input forms */ 
   handleChangeAddress(event) {
     this.setState({ address: event.target.value });
@@ -148,12 +69,11 @@ class Home extends React.Component {
   handleChangeDate(event) {
     this.setState({ date: event.target.value });
   }
+  /* Store address item in local storage */ 
   storeItem(key, val){
     window.localStorage.setItem(key, JSON.stringify(val));
   }
-  
-
-  /* Add address*/
+  /* Add item to lists below input */ 
   addItem() {
     if (this.state.address && this.state.date) {
       const locationItem = {
@@ -193,13 +113,14 @@ class Home extends React.Component {
           subtitle="Record location and people you've met."
         />
         <div className="Home">
-          <div className="errorMessage">{this.state.errorMessage}</div>
+         <AutoCompleteAddressForm />
+          {/* <div className="errorMessage">{this.state.errorMessage}</div>
           <input
             type="text"
             placeholder="Address location"
             value={this.state.address}
             onChange={this.handleChangeAddress}
-          />
+          /> */}
           <input
             type="text"
             placeholder="People at location"
