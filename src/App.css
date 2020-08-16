@@ -49,6 +49,13 @@
   color: white;
 }
 
+.errorMessage{
+  color: #C0392B;
+  font-size: 0.8em;
+  font-style: italic;
+  margin-bottom: 1em;
+}
+
 
 .left{
   float: left;
