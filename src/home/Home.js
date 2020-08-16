@@ -114,13 +114,6 @@ class Home extends React.Component {
         />
         <div className="Home">
          <AutoCompleteAddressForm />
-          {/* <div className="errorMessage">{this.state.errorMessage}</div>
-          <input
-            type="text"
-            placeholder="Address location"
-            value={this.state.address}
-            onChange={this.handleChangeAddress}
-          /> */}
           <input
             type="text"
             placeholder="People at location"
