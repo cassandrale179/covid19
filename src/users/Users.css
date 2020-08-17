@@ -2,3 +2,12 @@
     margin-top: var(--topNavHeight);
     padding: 5vh;
 }
+
+
+.content{
+    position: fixed;
+    bottom: var(--topNavHeight);
+    top: 8em;
+    overflow: auto;
+    overflow-x: hidden;
+}

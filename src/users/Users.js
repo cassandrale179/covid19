@@ -40,7 +40,6 @@ function UserList(props){
 }
 
 function Users() {
-  console.log(UserData);
   return (
     <div>
       <Nav title="Contacts" subtitle="Receive alerts about your contacts."/>
@@ -51,13 +50,11 @@ function Users() {
               <button className="chip"> Tested Positive </button>
               <button className="chip"> Show Symptoms </button>
           </div> */}
-          {/* <UserList name="Adriana" status="Tested positive" image="https://images.generated.photos/zwX9Pw37iJjGWVvTvF8NHpUI8OfWiaBc8c9dw8l7ZBc/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Ry/YW5zcGFyZW50X3Yz/L3YzXzAyNzEzNjku/cG5n.png"/>
-          <UserList name="Bianca" status="Show symptoms" image="https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-7.jpg" />
-          <UserList name="Cicero"  status="Tested negative" image="https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-5.jpg"/>
-          <UserList name="Don Pedro" status="Show symptoms" image="https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-4.jpg"/> */}
-          {UserData.map(user => {
-             return <UserList name={user.name} status={user.status} image={user.avatar}/>
-          })}
+          <div className="users">
+            {UserData.map(user => {
+              return <UserList name={user.name} status={user.status} image={user.avatar}/>
+            })}
+          </div>
       </div>
     </div>
     </div>
