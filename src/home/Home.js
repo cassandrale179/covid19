@@ -78,7 +78,6 @@ class Home extends React.Component {
     if (this.state.address && this.state.date) {
       const locationItem = {
         address: this.state.address,
-        people: this.state.people,
         date: this.state.date,
       };
       const joined = this.state.storage.concat(locationItem);
@@ -101,7 +100,6 @@ class Home extends React.Component {
           key={v.address}
           address={v.address}
           date={v.date}
-          people={v.people}
         />
       );
     });
@@ -113,18 +111,11 @@ class Home extends React.Component {
           subtitle="Record location and people you've met."
         />
         <div className="Home">
-         <AutoCompleteAddressForm />
-          <input
-            type="text"
-            placeholder="People at location"
-            defaultValue={this.state.people}
-            onChange={this.handleChangePeople}
-          />
+         <AutoCompleteAddressForm  />
           <input type="date" onChange={this.handleChangeDate} />
           <button className="button left full"> Visualize </button>
           <button className="button default left full" onClick={this.addItem}>
-            {" "}
-            Add Location{" "}
+            Add Location
           </button>
           <div className="timeline">{locationItems}</div>
         </div>

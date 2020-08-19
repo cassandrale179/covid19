@@ -1,6 +1,6 @@
 const UserData = [{
     "name": "Adriana",
-    "status": "Tested positive",
+    "status": "Tested Positive",
     "last_updated": "08/20/20",
     "address": "669 Brooklyn Street, Philadelphia PA 19104",
     "longitude, latitude": (39.964460, -75.207800), 

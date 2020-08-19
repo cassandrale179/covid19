@@ -10,13 +10,65 @@ import Typography from '@material-ui/core/Typography';
 
 import { UserData } from '../fakeData';
 
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+
 function handleClick(event){
   // event.target.style.backgroundColor = 'black';
 }
 
 function UserList(props){
+  const [open, setOpen] = React.useState(false);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    const setColor = (status) => {
+      if (status == "Tested Positive")
+      return "#bf360c";
+      else if (status == "No Symptoms")
+      return "#2e7d32";
+      else if (status == "Show Symptoms")
+      return "#ffc107";
+    }
+
   return (
-      <ListItem alignItems="flex-start">
+     <div>
+     <Dialog
+     open={open}
+     onClose={handleClose}
+     aria-labelledby="alert-dialog-title"
+     aria-describedby="alert-dialog-description"
+   >
+     <DialogTitle id="alert-dialog-title">{" View User Information"}</DialogTitle>
+     <DialogContent dividers>
+          <Typography gutterBottom>
+            <b> Name: </b> {props.name} <br />
+            <b> Status: </b> {props.status} <br />
+            <b> Visited: </b> {props.location} <br />
+            <b> Last Updated:</b> {props.updated} <br />
+          </Typography>
+
+     </DialogContent>
+     <DialogActions>
+       <Button onClick={handleClose} color="primary">
+         Close
+       </Button>
+     </DialogActions>
+    </Dialog>
+
+
+      <ListItem alignItems="flex-start" onClick={handleClickOpen}>
         <ListItemAvatar>
           <Avatar src={props.image} />
         </ListItemAvatar>
@@ -27,7 +79,7 @@ function UserList(props){
               <Typography
                 component="span"
                 variant="body2"
-                color="intial"
+                style ={{color: setColor(props.status)}} 
               >
                 {props.status}
               </Typography>
@@ -36,6 +88,7 @@ function UserList(props){
           }
         />
       </ListItem>
+      </div>
   );
 }
 
@@ -46,13 +99,9 @@ function Users() {
         <div className="Users">
         <div className="content">
           <input type="text" placeholder="Search for users..." />
-          {/* <div className="chipDiv">
-              <button className="chip"> Tested Positive </button>
-              <button className="chip"> Show Symptoms </button>
-          </div> */}
           <div className="users">
             {UserData.map(user => {
-              return <UserList name={user.name} status={user.status} image={user.avatar}/>
+              return <UserList name={user.name} status={user.status} image={user.avatar} updated={user.last_updated} location={user.address} color={"#ef6c00"} />
             })}
           </div>
       </div>

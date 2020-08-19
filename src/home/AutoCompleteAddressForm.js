@@ -26,11 +26,12 @@ function handleScriptLoad(updateQuery, autoCompleteRef) {
   autoComplete.addListener("place_changed", () =>{
     const addressObject = autoComplete.getPlace();
     const query = addressObject.formatted_address;
+    const zipCode = addressObject.address_components[7].long_name; 
     updateQuery(query);
   });
 }
 
-export default function AutoCompleteAddressForm() {
+export default function AutoCompleteAddressForm(props) {
   const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
 
@@ -46,7 +47,7 @@ export default function AutoCompleteAddressForm() {
       <input
         ref={autoCompleteRef}
         onChange={event => setQuery(event.target.value)}
-        placeholder="Enter a City"
+        placeholder="Enter a location"
         value={query}
       />
     </div>

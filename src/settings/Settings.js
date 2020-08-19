@@ -1,13 +1,35 @@
 import React from "react";
 import "./Settings.css";
 import Nav from "../nav/Nav";
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+// import InboxIcon from '@material-ui/icons/Inbox';
+// import DraftsIcon from '@material-ui/icons/Drafts';
 
-function Symptoms() {
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props} />;
+}
+
+export default function Settings() {
+  const classes = useStyles();
+
   return (
-    <div className="Settins">
-      <Nav title="Settings" />
+    <div className={classes.root}>
+       <Nav title="Settings" />
     </div>
   );
 }
-
-export default Symptoms;
