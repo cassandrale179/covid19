@@ -6,6 +6,7 @@ import Home from './home/Home';
 import Users from './users/Users'; 
 import Symptoms from './symptoms/Symptoms';
 import Settings from './settings/Settings';
+import Map from './home/MapView'; 
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/users" component={Users} exact /> 
         <Route path="/symptoms" component={Symptoms} exact /> 
         <Route path="/settings" component={Settings} exact />  
+        <Route path="/map" component={Map} exact />   
       </Switch>
     </main>
   );

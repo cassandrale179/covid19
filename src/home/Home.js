@@ -6,6 +6,11 @@ import Geocode from "react-geocode";
 import LocationItem from './LocationItem';
 import  AutoCompleteAddressForm from './AutoCompleteAddressForm';
 
+/* Navigate to given page */ 
+function navigate(location) {
+  window.location.href = `/${location}`;
+}
+
 // /* Main default class home */
 class Home extends React.Component {
   constructor(props) {
@@ -113,7 +118,7 @@ class Home extends React.Component {
         <div className="Home">
          <AutoCompleteAddressForm  />
           <input type="date" onChange={this.handleChangeDate} />
-          <button className="button left full"> Visualize </button>
+          <button className="button left full" onClick={() => navigate("map")}> Visualize </button>
           <button className="button default left full" onClick={this.addItem}>
             Add Location
           </button>
