@@ -7,12 +7,12 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 export default class MapView extends Component {
   static defaultProps = {
     center: {
-      lat: 59.95,
-      lng: 30.33
+      lat: 39.95,
+      lng: -75.19,
     },
     zoom: 11
   };
- 
+
   render() {
     return (
       // Important! Always set the container height explicitly
@@ -24,8 +24,8 @@ export default class MapView extends Component {
           defaultZoom={this.props.zoom}
         >
           <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
+             lat={39.95}
+             lng={-75.19}
             text="My Marker"
           />
         </GoogleMapReact>
