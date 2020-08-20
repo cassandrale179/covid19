@@ -7,7 +7,6 @@
 .content{
     position: fixed;
     bottom: var(--topNavHeight);
-    top: 8em;
+    top: 11em;
     overflow: auto;
-    overflow-x: hidden;
 }
