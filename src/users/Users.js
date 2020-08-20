@@ -97,7 +97,7 @@ function Users() {
       <Nav title="Contacts" subtitle="Receive alerts about your contacts."/>
         <div className="Users">
         <input type="text" placeholder="Search for users..." />
-          <div className="content">
+          <div className="userContent">
           <div className="users">
             {UserData.map(user => {
               return <UserList name={user.name} status={user.status} image={user.avatar} updated={user.last_updated} location={user.address} color={"#ef6c00"} />

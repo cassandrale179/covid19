@@ -4,7 +4,7 @@
 }
 
 
-.content{
+.userContent{
     position: fixed;
     bottom: var(--topNavHeight);
     top: 11em;
