@@ -45,10 +45,9 @@ export default function LocationItem(props) {
           <DialogTitle id="alert-dialog-title">{"Edit your location"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Edit your information below. Or you can delete it by clicking delete.
+              Edit your information below. 
             </DialogContentText>
             <TextField margin="dense" id="location" label="Address" type="text" fullWidth />
-            <TextField margin="dense" id="people" label="People" type="text" fullWidth />
             <TextField margin="dense" id="date" type="date" fullWidth />
           </DialogContent>
           <DialogActions>
@@ -65,11 +64,11 @@ export default function LocationItem(props) {
         <List>
         <ListItem alignItems="flex-start">
           <ListItemText
-            primary={props.date + " | " + props.address}
+            primary={props.address}
             secondary={
               <React.Fragment>
                 <Typography variant="body2" color="textPrimary">
-                People met: {props.people}
+                Date: {props.date}
                 </Typography>
               </React.Fragment>
             }

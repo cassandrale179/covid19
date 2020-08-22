@@ -21,7 +21,6 @@ class Home extends React.Component {
       errorMessage: "",
     };
     // !IMPORTANT! bind all functions call to recognize this keyword
-    this.handleChangeAddress = this.handleChangeAddress.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.addItem = this.addItem.bind(this);
   }
@@ -29,15 +28,13 @@ class Home extends React.Component {
   componentDidMount() {
     if (!window.localStorage.getItem('storage')){
       window.localStorage.setItem('storage', JSON.stringify([]));
+    } else{
+      this.setState({storage: JSON.parse(window.localStorage.getItem('storage'))});
     }
     console.log('componentDidMount', window.localStorage);
   }
  
-  /* Handlers for input forms */ 
-  handleChangeAddress(event) {
-    this.setState({ address: event.target.value });
-  }
- 
+
   handleChangeDate(event) {
     this.setState({ date: event.target.value });
   }
@@ -66,19 +63,24 @@ class Home extends React.Component {
     for (let key of keysToRemove) {
       window.localStorage.removeItem(key);
     } 
-    console.log(window.localStorage);
+    this.setState({storage: JSON.parse(window.localStorage.getItem('storage'))});
   }
 
   render() {
-    // const locationItems = this.state.storage.map((v) => {
-    //   return (
-    //     <LocationItem
-    //       key={v.address}
-    //       address={v.address}
-    //       date={v.date}
-    //     />
-    //   );
-    // });
+    this.state.storage.map((v) => {
+      console.log(v);
+    })
+    const locationItems = this.state.storage.map((v) => {
+      return (
+        <LocationItem
+          key={v.address}
+          address={v.address}
+          date={v.date}
+          latlng={JSON.parse(v.latlng)}
+          zipCode={v.zipCode}
+        />
+      );
+    });
 
     return (
       <div>
@@ -93,7 +95,7 @@ class Home extends React.Component {
           <button className="button default left full" onClick={this.addItem}>
             Add Location
           </button>
-          {/* <div className="timeline">{locationItems}</div> */}
+          <div className="timeline">{locationItems}</div>
         </div>
       </div>
     );

@@ -34,9 +34,8 @@ function handleScriptLoad(updateAddress, autoCompleteRef) {
     } 
     const lat = addressObject.geometry.location.lat();
     const lng = addressObject.geometry.location.lng();
-    console.log(lat, lng);
 
-      // Add in data to the window storage objects 
+    // Add in data to the window storage objects 
     window.localStorage.setItem('latlngStorage', JSON.stringify([lat, lng])); 
     window.localStorage.setItem('zipCodeStorage', zipCode);
     window.localStorage.setItem('addressStorage', address);
