@@ -7,7 +7,7 @@
 .userContent{
     position: fixed;
     bottom: var(--topNavHeight);
-    top: 14em;
+    top: 15em;
     overflow: auto;
 }
 

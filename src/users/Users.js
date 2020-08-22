@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState, useEffect } from 'react';
 import './Users.css';
 import Nav from '../nav/Nav'
 
@@ -92,16 +92,40 @@ function UserList(props){
 }
 
 function Users() {
+
+  const [users, setUsers] = useState(Object.values(UserData));
+  const [message, setMessage] = useState('');
+
+  const filterUsers = () => {
+    const allUsers = Object.values(UserData);
+    const filteredUsers = [];
+    allUsers.forEach(user => {
+      if (user.zipcode == "19104"){
+        filteredUsers.push(user);
+      }
+    })
+    setUsers(filteredUsers);
+    setMessage(`There are ${filteredUsers.length} users within your zipcode 19104.`);
+
+  };
+
+  const resetFilter = () => {
+    setUsers(Object.values(UserData));
+    setMessage('');
+  }
+
   return (
     <div>
       <Nav title="Contacts" subtitle="Receive alerts about your contacts."/>
         <div className="Users">
+        <div className="errorMessage">{message}</div>
         <input type="text" placeholder="Search for users..." />
-          <button class="button default fullscreen">Filter my contacts</button>
+          <button class="button default full" onClick={filterUsers}>Filter Contacts</button>
+          <button class="button full" onClick={resetFilter}> See all contacts </button>
           <div className="userContent">
           <div className="users">
-            {UserData.map(user => {
-              return <UserList name={user.name} status={user.status} image={user.avatar} updated={user.last_updated} location={user.address} color={"#ef6c00"} />
+          {users.map(user => {
+              return <UserList name={user.name} status={user.status} image={user.avatar} updated={user.last_updated} location={user.address} />
             })}
           </div>
       </div>
