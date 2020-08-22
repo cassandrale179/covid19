@@ -40,11 +40,18 @@ import Nav from "../nav/Nav";
 
 const MapView = ({ latitude, longitude }) => {
     const renderMarkers = (map, maps) => {
+    let markers = [];
     let marker = new maps.Marker({
         position: { lat: 39.95, lng: -75.19},
         map,
         });
-    return marker;
+        let marker2 = new maps.Marker({
+            position: { lat: 39.91, lng: -75.12},
+            map,
+        });
+    markers.push(marker);
+    markers.push(marker2);
+    return markers;
     };
 
  return (
@@ -55,7 +62,11 @@ const MapView = ({ latitude, longitude }) => {
       defaultCenter={{ lat: 39.95, lng: -75.19 }}
       defaultZoom={11}
       yesIWantToUseGoogleMapApiInternals
-      onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
+      onGoogleApiLoaded={({ map, maps }) => {
+          renderMarkers(map, maps);
+          renderMarkers(map, maps);
+          renderMarkers(map, maps);
+    }}
     >
     </GoogleMapReact>
    </div>
