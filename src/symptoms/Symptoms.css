@@ -6,7 +6,9 @@
 
 .content{
     position: absolute;
-    margin-top: 8em;
+    margin-top: 5em;
+    padding-left: 2em;
+    z-index: -5;
 }
 
 .symptomsList{

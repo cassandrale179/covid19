@@ -36,17 +36,17 @@ function SymptomsList(props){
 
 function Symptoms() {
   return (
-    <div className="Symptoms">
-      <Nav title="Symptoms" subtitle="Have you experience any of the listed symptoms?"/>
+    <div className="Current Status">
+      <Nav title="Symptoms" subtitle="Alert your contacts of your current status" />
+      <div className="content">
+      <img src="https://i.pinimg.com/originals/3b/ae/30/3bae3084e2c8f766575e4863ea35585a.png" />
       <div className="symptomsList">
-        <SymptomsList title="Fever" />
-        <SymptomsList title="Shortness of breath" />
-        <SymptomsList title="Muscle or body aches" />
-        <SymptomsList title="Headache" />
-        <SymptomsList title="Sore throat" />
-        <SymptomsList title="Congestion or runny nose" />
+        <SymptomsList title="No Symptoms" />
+        <SymptomsList title="Tested Positive" />
+        <SymptomsList title="Show some symptoms" />
       </div>
       <button className="button default full"> Alert my contacts</button>
+      </div>
     </div>
   );
 }

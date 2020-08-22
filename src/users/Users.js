@@ -97,6 +97,7 @@ function Users() {
       <Nav title="Contacts" subtitle="Receive alerts about your contacts."/>
         <div className="Users">
         <input type="text" placeholder="Search for users..." />
+          <button class="button default fullscreen">Filter my contacts</button>
           <div className="userContent">
           <div className="users">
             {UserData.map(user => {

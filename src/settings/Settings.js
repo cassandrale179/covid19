@@ -80,7 +80,7 @@ export default function Settings() {
   return (
     <div>
        <Nav title="Settings" subtitle="Customize Your Profile Here" />
-       <div className="content">
+       <div className="settingsContent">
           <NestedList />
        </div>
     </div>

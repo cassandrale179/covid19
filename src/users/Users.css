@@ -7,6 +7,10 @@
 .userContent{
     position: fixed;
     bottom: var(--topNavHeight);
-    top: 11em;
+    top: 14em;
     overflow: auto;
+}
+
+.fullscreen{
+    width: 100%;
 }
