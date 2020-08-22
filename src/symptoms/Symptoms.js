@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Symptoms.css";
 import Nav from "../nav/Nav";
 
@@ -11,11 +11,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
+import Alert from '@material-ui/lab/Alert';
 
 
-function handleToggle(){
-    
-}
+
 
 /* Return list of potential symptoms. */ 
 function SymptomsList(props){
@@ -35,6 +34,12 @@ function SymptomsList(props){
 }
 
 function Symptoms() {
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleClick = () => {
+    setShowAlert(true);
+  };
+
   return (
     <div className="Current Status">
       <Nav title="Symptoms" subtitle="Alert your contacts of your current status" />
@@ -45,7 +50,12 @@ function Symptoms() {
         <SymptomsList title="Tested Positive" />
         <SymptomsList title="Show some symptoms" />
       </div>
-      <button className="button default full"> Alert my contacts</button>
+      <button className="button default full" onClick={handleClick}> Alert my contacts</button>
+      {showAlert &&
+        <div className="showAlert">
+          <Alert severity="success">Your status is updated!</Alert>
+        </div>
+      }
       </div>
     </div>
   );
